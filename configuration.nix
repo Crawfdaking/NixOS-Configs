@@ -15,6 +15,7 @@
     loader = {
     	systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
+
 	#Adjust how long the bootloader waits for userinput before booting to default 
 	timeout = 1;
      };
@@ -164,7 +165,6 @@
      pciutils
      lshw
      gparted
-     auto-cpufreq
  ];
 
   # Enable auto-cpufreq daemon
@@ -211,6 +211,8 @@
   #Allows and tells nixs how to optimize storage
   nix = {
     settings.auto-optimise-store = true;
+    #Enable experimental nix features
+    settings.experimental-features = [ "nix-command" "flakes" ];
     gc = {
 	automatic = true;
   	dates = "weekly";
