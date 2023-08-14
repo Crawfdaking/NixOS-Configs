@@ -108,6 +108,7 @@
     extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
        firefox
+       tor
        discord
        bitwarden
        bitwarden-cli
