@@ -15,7 +15,7 @@
     loader = {
     	systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
-	timeout = 2;
+	timeout = 1;
      };
   };
   
@@ -59,7 +59,7 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
-  # networking.hostName = "nixos"; # Define your hostname.
+   networking.hostName = "Crawfords_Linux_PC"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
    networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -168,6 +168,12 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
+
+  ### automatic upgrade
+  system.autoUpgrade = {
+      enable = true;
+      channel = "https://nixos.org/channels/nixos-23.05";
+  };
 
   nix = {
     settings.auto-optimise-store = true;
