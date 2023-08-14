@@ -105,7 +105,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.crawford = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
        firefox
        discord
