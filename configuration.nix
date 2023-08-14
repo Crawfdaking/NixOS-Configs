@@ -141,6 +141,8 @@
        tmux
        libsForQt5.yakuake
        gh
+       steam
+       lutris
      ];
    };
 
@@ -162,6 +164,7 @@
      pciutils
      lshw
      gparted
+     auto-cpufreq
  ];
 
   # Some programs need SUID wrappers, can be configured further or are
