@@ -97,7 +97,22 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+  	enable = true;
+	package = pkgs.pulseaudioFull;
+	# Auto switches audio to bluetooth when a device is connected
+	extraConfig = "load-module module-switch-on-connect";
+  };
+
+  # Enable and configure bluetooth support
+  hardware.bluetooth = {
+	enable = true;
+	settings = {
+		General = {
+		Enable = "Source,Sink,Media,Socket";
+		};
+	};
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
     services.xserver.libinput.enable = true;
