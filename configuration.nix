@@ -15,6 +15,7 @@
     loader = {
     	systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
+	#Adjust how long the bootloader waits for userinput before booting to default 
 	timeout = 1;
      };
   };
@@ -48,7 +49,8 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     #package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
+  
+  # Enables and configures integrated and dedicated gpus to work together
   hardware.nvidia.prime = {
     offload = {
       enable = true;
@@ -99,6 +101,7 @@
   sound.enable = true;
   hardware.pulseaudio = {
   	enable = true;
+	#Adds extra audio codec support
 	package = pkgs.pulseaudioFull;
 	# Auto switches audio to bluetooth when a device is connected
 	extraConfig = "load-module module-switch-on-connect";
@@ -109,10 +112,14 @@
 	enable = true;
 	settings = {
 		General = {
+		#Enables A2DP Sink (enabling recommended, most modern headphones use this
 		Enable = "Source,Sink,Media,Socket";
 		};
 	};
   };
+
+  # Provides a bluetooth GUI in case desktop enviorment does not have one already
+  #services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
     services.xserver.libinput.enable = true;
@@ -140,7 +147,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
      environment.systemPackages = with pkgs; [
-     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     neovim      
      wget
      curl
      lolcat
@@ -190,7 +198,8 @@
       enable = true;
       channel = "https://nixos.org/channels/nixos-23.05";
   };
-
+  
+  #Allows and tells nixs how to optimize storage
   nix = {
     settings.auto-optimise-store = true;
     gc = {
