@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+       <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -124,28 +125,51 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
     services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.crawford = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
-     packages = with pkgs; [
+    packages = with pkgs; [
+       discord
+       authy
+       ngrok
+       steam
        firefox
        tor
-       discord
        bitwarden
        bitwarden-cli
-       authy
        flameshot
-       ngrok
        vlc
        tmux
        libsForQt5.yakuake
        gh
-       steam
        lutris
-     ];
+    ];
+    };
+
+
+    home-manager.users.crawford = {pkgs, ...}: {
+     programs.home-manager.enable = true;
+     home = { 
+     stateVersion = "23.05";
+     #packages = with pkgs; [
+     #
+     #];
+     };
+     programs = {
+	git = {
+	  enable = true;
+	  userEmail = "Crawfordlee03@gmail.com";
+	  userName = "Crawford";
+	};
+	neovim = {
+	  enable = true;
+	  defaultEditor = true;
+	};
+
+     };
    };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -161,7 +185,6 @@
      unzip
      neofetch
      htop
-     git
      pciutils
      lshw
      gparted
@@ -184,10 +207,10 @@
     services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
+  # networking.firewall.allowedUDPPorts = [ 5353 137 445 161];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+   networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -210,9 +233,11 @@
   
   #Allows and tells nixs how to optimize storage
   nix = {
-    settings.auto-optimise-store = true;
+    settings = {
+    auto-optimise-store = true;
     #Enable experimental nix features
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [ "nix-command" "flakes" ];
+    };
     gc = {
 	automatic = true;
   	dates = "weekly";
