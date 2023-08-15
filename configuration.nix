@@ -142,14 +142,13 @@
        vlc
        tmux
        libsForQt5.yakuake
-       gh
+       #gh
        lutris
     ];
     };
 
 
     home-manager.users.crawford = {pkgs, ...}: {
-     programs.home-manager.enable = true;
      home = { 
      stateVersion = "23.05";
      #packages = with pkgs; [
@@ -157,6 +156,9 @@
      #];
      };
      programs = {
+     	home-manager = {
+	  enable = true;
+	};
 	git = {
 	  enable = true;
 	  userEmail = "Crawfordlee03@gmail.com";
@@ -165,6 +167,12 @@
 	neovim = {
 	  enable = true;
 	  defaultEditor = true;
+	};
+	gh = {
+	  enable = true;
+	  settings = {
+		git_protocol = "ssh";
+	  };
 	};
 
      };
