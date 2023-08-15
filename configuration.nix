@@ -134,15 +134,12 @@
        authy
        ngrok
        steam
-       firefox
        tor
        bitwarden
        bitwarden-cli
-       flameshot
        vlc
        tmux
        libsForQt5.yakuake
-       #gh
        lutris
     ];
     };
@@ -155,12 +152,18 @@
 			frequency = "weekly";
 			};
 		};
+	#flameshot = {
+	#	enable = true;
+	#	settings = {
+	#		General = {
+	#			startupLaunch = true;
+	#			disabledTrayIcon = false;
+	#		};
+	#	};
+	#};
      };
      home = { 
      stateVersion = "23.05";
-     #packages = with pkgs; [
-     #
-     #];
      };
      programs = {
      	home-manager = {
@@ -181,10 +184,17 @@
 		git_protocol = "ssh";
 	  };
 	};
-
+	firefox = {
+	  enable = true;
+	  profiles = {
+		crawford = {
+			id = 0;
+			name = "Crawford";
+		};
+	  };
+	};
      };
    };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
