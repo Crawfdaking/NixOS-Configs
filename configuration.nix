@@ -147,8 +147,15 @@
     ];
     };
 
-
     home-manager.users.crawford = {pkgs, ...}: {
+    services = {
+       home-manager = {
+		autoUpgrade = {
+			enable = true;
+			frequency = "weekly";
+			};
+		};
+     };
      home = { 
      stateVersion = "23.05";
      #packages = with pkgs; [
