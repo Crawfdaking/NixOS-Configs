@@ -186,10 +186,62 @@
 	};
 	firefox = {
 	  enable = true;
+	  package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+            extraPolicies = {
+                CaptivePortal = false;
+                DisableFirefoxStudies = true;
+                DisablePocket = true;
+                DisableTelemetry = true;
+                DisableFirefoxAccounts = true;
+                NoDefaultBookmarks = true;
+                OfferToSaveLogins = false;
+                OfferToSaveLoginsDefault = false;
+                PasswordManagerEnabled = false;
+                FirefoxHome = {
+                    Search = true;
+                    Pocket = false;
+                    Snippets = false;
+                    TopSites = false;
+                    Highlights = false;
+                };
+		UserMessaging = {
+                    ExtensionRecommendations = false;
+                    SkipOnboarding = true;
+                };
+	    };
+         };
 	  profiles = {
 		crawford = {
 			id = 0;
 			name = "Crawford";
+			search = {
+				force = true;
+				default = "Brave";
+				engines = {
+					"Nix Packages" = {
+    					 urls = [{
+      					 template = "https://search.nixos.org/packages";
+      					 params = [
+        					{ name = "type"; value = "packages"; }
+        					{ name = "query"; value = "{searchTerms}"; }
+      					 ];
+    				       }];
+					icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+    					definedAliases = [ "@np" ];
+				    };
+				    "NixOS Wiki" = {
+    				      urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+    				      iconUpdateURL = "https://nixos.wiki/favicon.png";
+    				      updateInterval = 24 * 60 * 60 * 1000; # every day
+    				      definedAliases = [ "@nw" ];
+  				};
+				"Brave" = {
+				urls = [{ template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
+				definedAliases = ["@br"];
+				#iconUpdateURL = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/favicon-32x32.86083f5b.png";
+				};
+			     };
+			};
 		};
 	  };
 	};
