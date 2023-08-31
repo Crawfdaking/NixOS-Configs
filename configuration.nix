@@ -11,6 +11,15 @@
        <home-manager/nixos>
     ];
 
+
+  #add the Nix User Repository (NUR) to nix
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
+
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
@@ -90,6 +99,12 @@
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+
+  environment = {
+  	plasma5 = {
+		excludePackages = with pkgs; [libsForQt5.okular libsForQt5.elisa libsForQt5.gwenview];
+	};
+  };
   
 
   # Configure keymap in X11
@@ -129,6 +144,7 @@
     users.users.crawford = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
     packages = with pkgs; [
        discord
        authy
@@ -138,13 +154,17 @@
        bitwarden
        bitwarden-cli
        vlc
-       tmux
        libsForQt5.yakuake
        lutris
     ];
-    };
+  };
 
-    home-manager.users.crawford = {pkgs, ...}: {
+    home-manager.users.crawford = {pkgs, config, lib, ...}: {
+    #nixpkgs.config.packageOverrides = pkgs: {
+        #nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          #inherit pkgs;
+        #};
+      #};
     services = {
        home-manager = {
 		autoUpgrade = {
@@ -152,15 +172,6 @@
 			frequency = "weekly";
 			};
 		};
-	#flameshot = {
-	#	enable = true;
-	#	settings = {
-	#		General = {
-	#			startupLaunch = true;
-	#			disabledTrayIcon = false;
-	#		};
-	#	};
-	#};
      };
      home = { 
      stateVersion = "23.05";
@@ -168,6 +179,20 @@
      programs = {
      	home-manager = {
 	  enable = true;
+	};
+	zsh = {
+	  enable = true;
+	  autocd = true;
+	  oh-my-zsh = {
+		enable = true;
+	  };
+	  prezto = {
+		enable = true;
+		tmux = {
+			autoStartLocal = true;
+			autoStartRemote = true;
+		};
+	  };
 	};
 	git = {
 	  enable = true;
@@ -214,6 +239,9 @@
 		crawford = {
 			id = 0;
 			name = "Crawford";
+			#extensions = with nur.repos.rycee.firefox-addons; [
+  					#privacy-badger
+			#];
 			search = {
 				force = true;
 				default = "Brave";
@@ -235,6 +263,10 @@
     				      updateInterval = 24 * 60 * 60 * 1000; # every day
     				      definedAliases = [ "@nw" ];
   				};
+				"Home-Manager Options" = {
+				      urls = [{ template = "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}";}];
+				      definedAliases = ["@hmo"];
+				};
 				"Brave" = {
 				urls = [{ template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
 				definedAliases = ["@br"];
@@ -244,9 +276,18 @@
 			};
 		};
 	  };
+	}; #End firefox config
+	tmux = {
+		enable = true;
+		keyMode = "vi";
+		plugins = with pkgs; [
+		tmuxPlugins.vim-tmux-navigator
+		];
+
 	};
      };
    };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -265,6 +306,7 @@
      pciutils
      lshw
      gparted
+     flameshot
  ];
 
   # Enable auto-cpufreq daemon
@@ -272,10 +314,14 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-   programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
+   programs = {
+   mtr.enable = true;
+   	gnupg.agent = {
+     		enable = true;
+     		enableSSHSupport = true;
+   	};
+   zsh.enable = true;
+   #tmux.enable = true;
    };
 
   # List services that you want to enable:
