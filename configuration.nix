@@ -104,8 +104,8 @@
   	plasma5 = {
 		excludePackages = with pkgs; [libsForQt5.okular libsForQt5.elisa libsForQt5.gwenview];
 	};
+	shells = with pkgs; [zsh];
   };
-  
 
   # Configure keymap in X11
    services.xserver.layout = "us";
@@ -141,10 +141,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
     services.xserver.libinput.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.defaultUserShell = pkgs.zsh;
     users.users.crawford = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
     packages = with pkgs; [
        discord
        authy
@@ -156,6 +156,7 @@
        vlc
        libsForQt5.yakuake
        lutris
+       flameshot
     ];
   };
 
@@ -186,6 +187,10 @@
 	  oh-my-zsh = {
 		enable = true;
 	  };
+	  initExtra = "
+	  {tmux && exit;}
+	  alias cat='bat'
+	  alias vim='nvim'";
 	  prezto = {
 		enable = true;
 		tmux = {
@@ -193,6 +198,9 @@
 			autoStartRemote = true;
 		};
 	  };
+	};
+	bat = {
+	 enable = true;
 	};
 	git = {
 	  enable = true;
@@ -280,10 +288,14 @@
 	tmux = {
 		enable = true;
 		keyMode = "vi";
+		prefix = "C-a";
 		plugins = with pkgs; [
-		tmuxPlugins.vim-tmux-navigator
+			{
+    			    plugin = tmuxPlugins.vim-tmux-navigator;
+    			    extraConfig = "set -g @plugin 'christoomey/vim-tmux-navigator'";
+  			}
 		];
-
+		#extraConfig = "";
 	};
      };
    };
@@ -306,7 +318,6 @@
      pciutils
      lshw
      gparted
-     flameshot
  ];
 
   # Enable auto-cpufreq daemon
