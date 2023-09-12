@@ -22,6 +22,10 @@
 
   # Use the systemd-boot EFI boot loader.
   boot = {
+  	# Enable binfmt emulation of aarch64-linux.
+  	binfmt = { 
+		emulatedSystems = [ "aarch64-linux" ];
+	};
     loader = {
     	systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
@@ -157,6 +161,8 @@
        libsForQt5.yakuake
        lutris
        flameshot
+       keepassxc
+       nixos-generators
     ];
   };
 
@@ -318,6 +324,7 @@
      pciutils
      lshw
      gparted
+     lm_sensors
  ];
 
   # Enable auto-cpufreq daemon
