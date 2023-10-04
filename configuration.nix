@@ -2,13 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
        <home-manager/nixos>
+       ./firefox.nix
     ];
 
 
@@ -91,7 +92,8 @@
   # Select internationalisation properties.
    i18n.defaultLocale = "en_US.UTF-8";
    console = {
-     font = "Lat2-Terminus16";
+     packages = with pkgs; [terminus_font];
+     font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
      keyMap = "us";
      #useXkbConfig = true; # use xkbOptions in tty.
    };
@@ -167,11 +169,6 @@
   };
 
     home-manager.users.crawford = {pkgs, config, lib, ...}: {
-    #nixpkgs.config.packageOverrides = pkgs: {
-        #nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-          #inherit pkgs;
-        #};
-      #};
     services = {
        home-manager = {
 		autoUpgrade = {
@@ -253,9 +250,7 @@
 		crawford = {
 			id = 0;
 			name = "Crawford";
-			#extensions = with nur.repos.rycee.firefox-addons; [
-  					#privacy-badger
-			#];
+			# Refer to firefox.nix for extensions
 			search = {
 				force = true;
 				default = "Brave";
@@ -386,4 +381,3 @@
     };
   };
 }
-
