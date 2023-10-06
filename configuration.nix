@@ -6,7 +6,9 @@
        ./Computers/Dell-PC/config.nix
        ./Home-Manager/home-manager.nix
        ./Drivers/nvidia.nix
-       #./Packages/packages.nix
-       ./DesktopEnv/kde.nix
+       ./Packages/packages.nix
+       ./DesktopEnv/kdeX11.nix
+       #./DesktopEnv/gnomeX11.nix
+       #./DesktopEnv/xfceX11.nix
     ];
 }

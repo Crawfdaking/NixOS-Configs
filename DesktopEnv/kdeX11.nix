@@ -10,10 +10,17 @@
 
   environment = {
   	plasma5 = {
-		excludePackages = with pkgs; [libsForQt5.okular libsForQt5.elisa libsForQt5.gwenview];
+		excludePackages = with pkgs.libsForQt5; [okular elisa gwenview];
 	};
 	shells = with pkgs; [zsh];
   };
+  # Package specific to kde.
+  users.users.crawford = {
+	packages = with pkgs.libsForQt5; [
+		yakuake
+	];
+
+};
 
   # Configure keymap in X11
    services.xserver.layout = "us";
@@ -23,5 +30,5 @@
     services.xserver.libinput.enable = true;
 
   #Tell Xorg to use Nvidia Drivers (Also works for Wayland)
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDriver = "nvidia";
 }

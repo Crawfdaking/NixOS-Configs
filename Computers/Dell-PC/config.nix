@@ -102,10 +102,19 @@
 	nano
 	curl
 	wget
+	findutils
+	tldr
+	htop
+	pciutils
+	lshw
+	lm_sensors
+	xclip
  ];
 
   # Enable auto-cpufreq daemon
   services.auto-cpufreq.enable = true;
+
+  services.locate.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
