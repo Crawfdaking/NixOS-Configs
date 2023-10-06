@@ -7,6 +7,6 @@
        ./Home-Manager/home-manager.nix
        ./Drivers/nvidia.nix
        #./Packages/packages.nix
-       #./DesktopEnv/kde.nix
+       ./DesktopEnv/kde.nix
     ];
 }
