@@ -23,5 +23,5 @@
     services.xserver.libinput.enable = true;
 
   #Tell Xorg to use Nvidia Drivers (Also works for Wayland)
-    services.xserver.videoDriver = ["nvidia"];
+    services.xserver.videoDrivers = ["nvidia"];
 }
