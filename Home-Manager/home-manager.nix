@@ -3,13 +3,13 @@
 {
     imports = [
     	<home-manager/nixos>
-	./Packages/zsh.nix
-	./Packages/firefox.nix
-	./Packages/bat.nix
-	./Packages/git.nix
-	./Packages/neovim.nix
-	./Packages/gh.nix
-	./Packages/tmux.nix
+#	./Packages/zsh.nix
+#	./Packages/firefox.nix
+#	./Packages/bat.nix
+#	./Packages/git.nix
+#	./Packages/neovim.nix
+#	./Packages/gh.nix
+#	./Packages/tmux.nix
     ];
     home-manager.users.crawford = {pkgs, config, lib, ...}: {
     services = {

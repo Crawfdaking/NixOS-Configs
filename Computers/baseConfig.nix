@@ -59,6 +59,24 @@
      useXkbConfig = true; # use xkbOptions in tty.
    };
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+
+  # Enable the Plasma 5 Desktop Environment.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  environment = {
+  	plasma5 = {
+		excludePackages = with pkgs; [libsForQt5.okular libsForQt5.elisa libsForQt5.gwenview];
+	};
+	shells = with pkgs; [zsh];
+  };
+
+  # Configure keymap in X11
+   services.xserver.layout = "us";
+  # services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
    services.printing.enable = true;
@@ -87,6 +105,8 @@
   # Provides a bluetooth GUI in case desktop enviorment does not have one already
   #services.blueman.enable = true;
 
+  # Enable touchpad support (enabled default in most desktopManager).
+    services.xserver.libinput.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.defaultUserShell = pkgs.zsh;
     users.users.crawford = {
@@ -100,8 +120,6 @@
      	git
 	vim
 	nano
-	curl
-	wget
  ];
 
   # Enable auto-cpufreq daemon

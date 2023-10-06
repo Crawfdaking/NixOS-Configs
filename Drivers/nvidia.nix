@@ -13,9 +13,6 @@
     driSupport32Bit = true;
   };
 
-  # Tell Xorg to use the nvidia driver (also valid for Wayland)
-  services.xserver.videoDrivers = ["nvidia"];
-
   hardware.nvidia = {
 
     # Modesetting is needed for most Wayland compositors
