@@ -7,7 +7,7 @@
        ./Home-Manager/home-manager.nix
        ./Drivers/nvidia.nix
        ./Packages/packages.nix
-       ./DesktopEnv/kdeX11.nix
+       ./DesktopEnv/kdeWayland.nix
        #./DesktopEnv/gnomeX11.nix
        #./DesktopEnv/xfceX11.nix
     ];
