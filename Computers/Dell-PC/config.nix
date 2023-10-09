@@ -137,12 +137,12 @@
   # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
   # networking.firewall.allowedUDPPorts = [ 5353 137 445 161];
   # Or disable the firewall altogether.
-   networking.firewall.enable = false;
+  #networking.firewall.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-    system.copySystemConfiguration = true;
+   system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
