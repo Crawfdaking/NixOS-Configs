@@ -84,9 +84,6 @@
 	};
   };
 
-  # Provides a bluetooth GUI in case desktop enviorment does not have one already
-  #services.blueman.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.defaultUserShell = pkgs.zsh;
     users.users.crawford = {

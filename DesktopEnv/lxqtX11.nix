@@ -14,6 +14,7 @@
 	];
   };
 
+  services.blueman.enable = true;
   environment = {
 #  	gnome = {
 #		excludePackages = with pkgs.gnome; [];
