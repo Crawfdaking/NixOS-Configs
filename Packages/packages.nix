@@ -24,6 +24,7 @@
        flameshot
        keepassxc
        #nixos-generators
+       libsForQt5.ark
     ];
   };
 
