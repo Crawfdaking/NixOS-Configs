@@ -117,7 +117,7 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
    programs = {
-   mtr.enable = true;
+   #mtr.enable = true;
    	gnupg.agent = {
      		enable = true;
      		enableSSHSupport = true;
@@ -129,7 +129,11 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
+    services.openssh = {
+	enable = true;
+	#By default firewall is auto opened
+	#openFirewall = false;
+     };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];

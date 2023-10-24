@@ -17,6 +17,9 @@
     networking.nameservers = [ "100.100.100.100" "1.1.1.1" "8.8.8.8"];
     networking.search = [ "tail386c1.ts.net" ];
 
+    # Disables the auto opening of the ssh port in the firewall
+    services.openssh.openFirewall = false;
+
     networking.firewall = {
     # enable the firewall (By default true)
     enable = true;
@@ -28,7 +31,8 @@
     allowedUDPPorts = [ config.services.tailscale.port ];
 
     # allow you to SSH in over the public internet
-    #allowedTCPPorts = [ 22 ];
+    #allowedTCPPorts = [22];
+    #interfaces.tailscale0.allowedTCPPorts = [22];
   };
 
 
