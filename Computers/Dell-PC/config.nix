@@ -106,6 +106,7 @@
 	lshw
 	lm_sensors
 	xclip
+	dig
  ];
 
   # Enable auto-cpufreq daemon
