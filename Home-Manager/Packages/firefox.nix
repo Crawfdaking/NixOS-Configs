@@ -74,4 +74,9 @@ in {
 	}; #End firefox config
       };
    };
+  users.users.crawford = {
+		packages = with pkgs; [
+			speechd
+		];
+	};
 }
