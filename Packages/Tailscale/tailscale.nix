@@ -6,13 +6,16 @@
   #];
 
   # make the tailscale command usable to users
-  users.users.crawford.packages = with pkgs; [ pkgs.tailscale ];
+  users.users.crawford.packages = with pkgs; [ tailscale ];
 
   # enable the tailscale service
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
   };
+
+    networking.nameservers = [ "100.100.100.100" "1.1.1.1" "8.8.8.8"];
+    networking.search = [ "tail386c1.ts.net" ];
 
     networking.firewall = {
     # enable the firewall (By default true)
