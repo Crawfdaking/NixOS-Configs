@@ -24,8 +24,9 @@
       fi
 
       # otherwise authenticate with tailscale
-      ${tailscale}/bin/tailscale up -authkey tskey-examplekeyhere
+      ${tailscale}/bin/tailscale up -authkey tskey-auth-kc5SCN1CNTRL-1V4hEvdJdnH9s11XbyhjnH6fey1Zw4Fh --advertise-exit-node  --advertise-routes "192.168.1.0/24,10.0.0.0/24"
     '';
 
 
+};
 }

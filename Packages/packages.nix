@@ -10,23 +10,23 @@
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.crawford = {
-    packages = with pkgs; [
-       discord
-       authy
-       ngrok
-       steam
-       tor
-       bitwarden
-       bitwarden-cli
-       vlc
-       lutris
-       flameshot
-       keepassxc
+    #users.users.crawford = {
+    #packages = with pkgs; [
+       #discord
+       #authy
+       #ngrok
+       #steam
+       #tor
+       #bitwarden
+       #bitwarden-cli
+       #vlc
+       #lutris
+       #flameshot
+       #keepassxc
        #nixos-generators
-       libsForQt5.ark
-    ];
-  };
+       #libsForQt5.ark
+    #];
+  #};
 
      environment.systemPackages = with pkgs; [
      lolcat

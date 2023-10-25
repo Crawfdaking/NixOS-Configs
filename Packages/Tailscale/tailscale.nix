@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  #imports = [
-   # ./autoAuth.nix
-  #];
+  imports = [
+   ./autoAuth.nix
+  ];
 
   # make the tailscale command usable to users
   users.users.crawford.packages = with pkgs; [ tailscale ];
@@ -32,7 +32,7 @@
 
     # allow you to SSH in over the public internet
     #allowedTCPPorts = [22];
-    #interfaces.tailscale0.allowedTCPPorts = [22];
+    interfaces.end0.allowedTCPPorts = [22];
   };
 
 

@@ -114,6 +114,11 @@
 
   services.locate.enable = true;
 
+  #Enables mdns support
+  services.avahi = {
+	enable = true;
+	nssmdns = true;
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
    programs = {
@@ -126,7 +131,6 @@
    #tmux.enable = true;
    };
 
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
     services.openssh = {
@@ -137,7 +141,7 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
-  # networking.firewall.allowedUDPPorts = [ 5353 137 445 161];
+  #networking.firewall.allowedUDPPorts = [ 5353 ]; # 137 445 161];
   # Or disable the firewall altogether.
   #networking.firewall.enable = true;
 

@@ -2,14 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #"${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/raspberry-pi/4"
     ];
-
 
   #add the Nix User Repository (NUR) to nix
   nixpkgs.config.packageOverrides = pkgs: {
@@ -18,27 +18,23 @@
     };
   };
 
+  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+  boot.loader.grub.enable = false;
+  # Enables the generation of /boot/extlinux/extlinux.conf
+  boot.loader.generic-extlinux-compatible.enable = true;
+  boot.loader.timeout = 1;
 
-  # Use the systemd-boot EFI boot loader.
-  boot = {
-  	# Enable binfmt emulation of aarch64-linux.
-#  	binfmt = { 
-#		emulatedSystems = [ "aarch64-linux" ];
-#	};
-    loader = {
-    	systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-
-	#Adjust how long the bootloader waits for userinput before booting to default 
-	timeout = 1;
-     };
+  hardware = {
+    #raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+    #deviceTree = {
+      #enable = true;
+      #filter = "*rpi-4-*.dtb";
+    #raspberry-pi."4".fkms-3d.enable = true;
+    enableRedistributableFirmware = true;
+    #};
   };
-  
-  #Allow Unfree software
-  nixpkgs.config.allowUnfree = true;
 
-
-   networking.hostName = "Crawfords_Linux_PC"; # Define your hostname.
+   networking.hostName = "Crawfords_pi"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
    networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -55,51 +51,41 @@
    console = {
      packages = with pkgs; [terminus_font];
      font = "${pkgs.terminus_font}/share/consolefonts/ter-i16b.psf.gz";
-     #keyMap = "us";
-     useXkbConfig = true; # use xkbOptions in tty.
+     keyMap = "us";
+  #   useXkbConfig = true; # use xkbOptions in tty.
    };
 
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+
+
+  
 
   # Configure keymap in X11
-   services.xserver.layout = "us";
+  # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
    services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-  	enable = true;
-	#Adds extra audio codec support
-	package = pkgs.pulseaudioFull;
-	# Auto switches audio to bluetooth when a device is connected
-	extraConfig = "load-module module-switch-on-connect";
-  };
+   sound.enable = true;
+   hardware.pulseaudio.enable = true;
 
-  # Enable and configure bluetooth support
-  hardware.bluetooth = {
-	enable = true;
-	settings = {
-		General = {
-		#Enables A2DP Sink (enabling recommended, most modern headphones use this
-		Enable = "Source,Sink,Media,Socket";
-		};
-	};
-  };
-
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.defaultUserShell = pkgs.zsh;
-    users.users.crawford = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
-  };
+   users.defaultUserShell = pkgs.zsh;
+   users.users.crawford = {
+     isNormalUser = true;
+     extraGroups = [ "wheel" ]; # "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
+   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-     environment.systemPackages = with pkgs; [
-     	git
+   environment.systemPackages = with pkgs; [
+        git
 	vim
 	nano
 	curl
@@ -112,47 +98,42 @@
 	lm_sensors
 	xclip
 	dig
- ];
+	libraspberrypi
+	raspberrypi-eeprom
+   ];
 
-  # Enable auto-cpufreq daemon
-  services.auto-cpufreq.enable = true;
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+   programs = {
+     gnupg.agent = {
+         enable = true;
+         enableSSHSupport = true;
+   	};
+    zsh.enable = true;
+    };
+
+  # List services that you want to enable:
+  services.locate.enable = true;
 
   #Enables mdns support
   services.avahi = {
 	enable = true;
 	nssmdns = true;
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-   programs = {
-   #mtr.enable = true;
-   	gnupg.agent = {
-     		enable = true;
-     		enableSSHSupport = true;
-   	};
-   zsh.enable = true;
-   #tmux.enable = true;
-   };
-
-
   # Enable the OpenSSH daemon.
-    services.openssh = {
-	enable = true;
-	#By default firewall is auto opened
-	#openFirewall = false;
-     };
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
-  # networking.firewall.allowedUDPPorts = [ 5353 137 445 161];
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-   #networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-    system.copySystemConfiguration = true;
+   system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -162,7 +143,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  ### automatic upgrade
+ ### automatic upgrade
   system.autoUpgrade = {
       enable = true;
       channel = "https://nixos.org/channels/nixos-23.05";
@@ -181,4 +162,6 @@
   	options = "--delete-older-than 7d";
     };
   };
+
 }
+
