@@ -59,20 +59,6 @@
      useXkbConfig = true; # use xkbOptions in tty.
    };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-  environment = {
-  	plasma5 = {
-		excludePackages = with pkgs; [libsForQt5.okular libsForQt5.elisa libsForQt5.gwenview];
-	};
-	shells = with pkgs; [zsh];
-  };
 
   # Configure keymap in X11
    services.xserver.layout = "us";
@@ -102,11 +88,7 @@
 	};
   };
 
-  # Provides a bluetooth GUI in case desktop enviorment does not have one already
-  #services.blueman.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.defaultUserShell = pkgs.zsh;
     users.users.crawford = {
@@ -120,15 +102,31 @@
      	git
 	vim
 	nano
+	curl
+	wget
+	findutils
+	tldr
+	htop
+	pciutils
+	lshw
+	lm_sensors
+	xclip
+	dig
  ];
 
   # Enable auto-cpufreq daemon
   services.auto-cpufreq.enable = true;
 
+  #Enables mdns support
+  services.avahi = {
+	enable = true;
+	nssmdns = true;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
    programs = {
-   mtr.enable = true;
+   #mtr.enable = true;
    	gnupg.agent = {
      		enable = true;
      		enableSSHSupport = true;
@@ -137,16 +135,19 @@
    #tmux.enable = true;
    };
 
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
+    services.openssh = {
+	enable = true;
+	#By default firewall is auto opened
+	#openFirewall = false;
+     };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
   # networking.firewall.allowedUDPPorts = [ 5353 137 445 161];
   # Or disable the firewall altogether.
-   networking.firewall.enable = false;
+   #networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
