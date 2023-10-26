@@ -10,8 +10,9 @@
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    #users.users.crawford = {
-    #packages = with pkgs; [
+    users.users.crawford = {
+    packages = with pkgs; [
+        gh
        #discord
        #authy
        #ngrok
@@ -25,8 +26,8 @@
        #keepassxc
        #nixos-generators
        #libsForQt5.ark
-    #];
-  #};
+    ];
+  };
 
      environment.systemPackages = with pkgs; [
      lolcat

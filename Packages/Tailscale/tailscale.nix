@@ -19,20 +19,20 @@
 
     # Disables the auto opening of the ssh port in the firewall
     services.openssh.openFirewall = false;
-
+    services.openssh.ports = [23];
     networking.firewall = {
     # enable the firewall (By default true)
     enable = true;
 
     # always allow traffic from your Tailscale network
-    trustedInterfaces = [ "tailscale0" ];
+    #trustedInterfaces = [ "tailscale0" ];
 
     # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port ];
+    interfaces.tailscale0.allowedUDPPorts = [ config.services.tailscale.port ];
+    interfaces.tailscale0.allowedTCPPorts = [ 22 ];
 
     # allow you to SSH in over the public internet
-    #allowedTCPPorts = [22];
-    interfaces.end0.allowedTCPPorts = [22];
+    interfaces.end0.allowedTCPPorts = [23];
   };
 
 
