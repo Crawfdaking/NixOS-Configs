@@ -21,7 +21,7 @@
 		    prefetch = true;
 		    num-threads = 1;
 		    so-rcvbuf = "1m";
-		    private-address = ["192.168.0.0/16" "10.0.0.0/8"];
+		    private-address = ["192.168.0.0/24" "10.0.0.0/24"];
          	};
 	};
     };
