@@ -36,6 +36,8 @@ in {
 			name = "Crawford";
 			extensions = with nur-no-pkgs.repos.rycee.firefox-addons; [
 					bitwarden
+					noscript
+					ublock-origin
 				];
 			search = {
 				force = true;
