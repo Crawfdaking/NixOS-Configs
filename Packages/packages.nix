@@ -7,27 +7,28 @@
 {
   imports = [
     ./Tailscale/tailscale.nix
-    ./AdguardHome/adguardHome.nix
-    ./Unbound/unbound.nix
+    #./AdguardHome/adguardHome.nix
+    #./Unbound/unbound.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.crawford = {
     packages = with pkgs; [
-        gh
-       #discord
-       #authy
-       #ngrok
-       #steam
-       #tor
-       #bitwarden
-       #bitwarden-cli
-       #vlc
-       #lutris
-       #flameshot
-       #keepassxc
-       #nixos-generators
-       #libsForQt5.ark
+       gh
+       discord
+       authy
+       joplin-desktop
+       ngrok
+       steam
+       tor
+       bitwarden
+       bitwarden-cli
+       vlc
+       lutris
+       flameshot
+       keepassxc
+       nixos-generators
+       libsForQt5.ark
     ];
   };
 

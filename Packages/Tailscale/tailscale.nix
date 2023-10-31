@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-   ./autoAuth.nix
-  ];
+  #imports = [
+   #./autoAuth.nix
+  #];
 
   # make the tailscale command usable to users
   users.users.crawford.packages = with pkgs; [ tailscale ];
