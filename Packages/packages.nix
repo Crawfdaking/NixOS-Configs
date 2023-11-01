@@ -7,9 +7,9 @@
 {
   imports = [
     ./Tailscale/tailscale.nix
-    ./AdguardHome/adguardHome.nix
-    ./Unbound/unbound.nix
-    ./Vaultwarden/vaultwarden.nix
+    #./AdguardHome/adguardHome.nix
+    #./Unbound/unbound.nix
+    #./Vaultwarden/vaultwarden.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -30,6 +30,7 @@
        keepassxc
        nixos-generators
        libsForQt5.ark
+       localsend
     ];
   };
 
