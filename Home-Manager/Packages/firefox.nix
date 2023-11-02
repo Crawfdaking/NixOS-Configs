@@ -38,6 +38,7 @@ in {
 					bitwarden
 					noscript
 					ublock-origin
+					sponsorblock
 				];
 			search = {
 				force = true;
