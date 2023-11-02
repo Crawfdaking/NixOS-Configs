@@ -12,7 +12,7 @@ in {
                 DisableFirefoxStudies = true;
                 DisablePocket = true;
                 DisableTelemetry = true;
-                DisableFirefoxAccounts = true;
+                DisableFirefoxAccounts = false;
                 NoDefaultBookmarks = true;
                 OfferToSaveLogins = false;
                 OfferToSaveLoginsDefault = false;
