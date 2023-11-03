@@ -39,6 +39,9 @@ in {
 					noscript
 					ublock-origin
 					sponsorblock
+					user-agent-string-switcher
+					grammarly
+					augmented-steam
 				];
 			search = {
 				force = true;
