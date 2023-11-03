@@ -34,6 +34,10 @@
     ];
   };
 
+# Needed in order for localsend to work
+networking.firewall.interfaces.wlp3s0.allowedTCPPorts = [53317];
+networking.firewall.interfaces.wlp3s0.allowedUDPPorts = [53317];
+
      environment.systemPackages = with pkgs; [
      lolcat
      cowsay
