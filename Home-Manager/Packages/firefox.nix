@@ -42,6 +42,7 @@ in {
 					user-agent-string-switcher
 					grammarly
 					augmented-steam
+					multi-account-containers
 				];
 			search = {
 				force = true;
