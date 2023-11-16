@@ -31,6 +31,8 @@
        nixos-generators
        libsForQt5.ark
        localsend
+       ungoogled-chromium
+       thunderbird
     ];
   };
 
