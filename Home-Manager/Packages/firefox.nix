@@ -36,13 +36,16 @@ in {
 			name = "Crawford";
 			extensions = with nur-no-pkgs.repos.rycee.firefox-addons; [
 					bitwarden
-					noscript
+					privacy-badger
 					ublock-origin
+					temporary-containers
+					umatrix
 					sponsorblock
 					user-agent-string-switcher
 					grammarly
 					augmented-steam
 					multi-account-containers
+					cookie-autodelete
 				];
 			search = {
 				force = true;
