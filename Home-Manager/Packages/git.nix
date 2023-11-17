@@ -5,7 +5,7 @@
      programs = {
 	git = {
 	  enable = true;
-	  userEmail = "Crawfordlee03@gmail.com";
+	  userEmail = (builtins.readFile /etc/nixos/Env/gitEmail.env);
 	  userName = "Crawford";
 	};
      };
