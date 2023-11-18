@@ -7,8 +7,8 @@
 {
   imports = [
     ./Tailscale/tailscale.nix
-    #./AdguardHome/adguardHome.nix
-    #./Unbound/unbound.nix
+    ./AdguardHome/adguardHome.nix
+    ./Unbound/unbound.nix
     #./Vaultwarden/vaultwarden.nix
   ];
 
@@ -16,36 +16,49 @@
     users.users.crawford = {
     packages = with pkgs; [
        gh
-       discord
-       authy
-       joplin-desktop
-       ngrok
-       steam
-       tor
-       bitwarden
-       bitwarden-cli
-       vlc
-       lutris
-       flameshot
-       keepassxc
-       nixos-generators
-       libsForQt5.ark
-       localsend
-       ungoogled-chromium
-       thunderbird
+      # discord
+      # authy
+      # joplin-desktop
+      # ngrok
+      # steam
+      # tor
+      # bitwarden
+      # bitwarden-cli
+      # vlc
+      # lutris
+      # flameshot
+      # keepassxc
+      # nixos-generators
+      # libsForQt5.ark
+      # localsend
+      # ungoogled-chromium
+      # thunderbird
     ];
   };
 
 # Needed in order for localsend to work
-networking.firewall.interfaces.wlp3s0.allowedTCPPorts = [53317];
-networking.firewall.interfaces.wlp3s0.allowedUDPPorts = [53317];
+#networking.firewall.interfaces.wlp3s0.allowedTCPPorts = [53317];
+#networking.firewall.interfaces.wlp3s0.allowedUDPPorts = [53317];
 
-     environment.systemPackages = with pkgs; [
+environment.systemPackages = with pkgs; [
      lolcat
      cowsay
      gnutar
      unzip
      neofetch
      gparted
+     git
+     vim
+     nano
+     curl
+     wget
+     findutils
+     tldr
+     htop
+     pciutils
+     lshw
+     lm_sensors
+     xclip
+     dig
  ];
 }
