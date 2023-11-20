@@ -7,8 +7,8 @@
 {
   imports = [
     ./Tailscale/tailscale.nix
-    ./AdguardHome/adguardHome.nix
-    ./Unbound/unbound.nix
+    #./AdguardHome/adguardHome.nix
+    #./Unbound/unbound.nix
     #./Vaultwarden/vaultwarden.nix
   ];
 
@@ -16,23 +16,23 @@
     users.users.crawford = {
     packages = with pkgs; [
        gh
-      # discord
-      # authy
-      # joplin-desktop
-      # ngrok
-      # steam
-      # tor
-      # bitwarden
-      # bitwarden-cli
-      # vlc
-      # lutris
-      # flameshot
-      # keepassxc
-      # nixos-generators
-      # libsForQt5.ark
-      # localsend
-      # ungoogled-chromium
-      # thunderbird
+       discord
+       authy
+       joplin-desktop
+       ngrok
+       steam
+       tor
+       bitwarden
+       bitwarden-cli
+       vlc
+       lutris
+       flameshot
+       keepassxc
+       nixos-generators
+       libsForQt5.ark
+       localsend
+       ungoogled-chromium
+       thunderbird
     ];
   };
 
@@ -59,6 +59,7 @@ environment.systemPackages = with pkgs; [
      lshw
      lm_sensors
      xclip
+     ncdu
      dig
  ];
 }
