@@ -22,6 +22,9 @@
 #  	binfmt = { 
 #		emulatedSystems = [ "aarch64-linux" ];
 #	};
+	#extraModprobeConfig = ''
+	 # options snd slots=snd-hda-intel
+	#'';
     loader = {
     	systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
@@ -61,24 +64,25 @@
    services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-  	enable = true;
-	#Adds extra audio codec support
-	package = pkgs.pulseaudioFull;
-	# Auto switches audio to bluetooth when a device is connected
-	extraConfig = "load-module module-switch-on-connect";
-  };
+	security.rtkit.enable = true;
+	services.pipewire = {
+	  enable = true;
+	  alsa.enable = true;
+	  alsa.support32Bit = true;
+	  pulse.enable = true;
+	  # If you want to use JACK applications, uncomment this
+	  #jack.enable = true;
+	};
 
   # Enable and configure bluetooth support
   hardware.bluetooth = {
 	enable = true;
-	settings = {
-		General = {
-		#Enables A2DP Sink (enabling recommended, most modern headphones use this
-		Enable = "Source,Sink,Media,Socket";
-		};
-	};
+	#settings = {
+	#	General = {
+	#	#Enables A2DP Sink (enabling recommended, most modern headphones use this
+	#	Enable = "Source,Sink,Media,Socket";
+	#	};
+	#};
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -88,9 +92,9 @@
     extraGroups = [ "wheel" "audio" "networkmanager"]; # Enable ‘sudo’ for the user.
   };
 
-#environment.systemPackages = with pkgs; [
-
-# ];
+environment.systemPackages = with pkgs; [
+	pavucontrol
+ ];
 
   # Enable auto-cpufreq daemon
   services.auto-cpufreq.enable = true;
@@ -112,6 +116,7 @@
      		enable = true;
      		enableSSHSupport = true;
    	};
+	dconf.enable = true;
    zsh.enable = true;
    #tmux.enable = true;
    };
