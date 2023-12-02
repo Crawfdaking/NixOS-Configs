@@ -33,6 +33,8 @@
        localsend
        ungoogled-chromium
        thunderbird
+       #lxappearance
+       #lxappearance-gtk2
     ];
   };
 
