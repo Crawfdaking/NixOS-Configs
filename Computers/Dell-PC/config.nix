@@ -151,7 +151,7 @@ environment.systemPackages = with pkgs; [
   ### automatic upgrade
   system.autoUpgrade = {
       enable = true;
-      channel = "https://nixos.org/channels/nixos-23.05";
+      channel = "https://nixos.org/channels/nixos-23.11";
   };
   
   #Allows and tells nixs how to optimize storage
