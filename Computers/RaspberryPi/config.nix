@@ -130,7 +130,7 @@
   system.autoUpgrade = {
       enable = true;
       allowReboot = true;
-      channel = "https://nixos.org/channels/nixos-23.05";
+      channel = "https://nixos.org/channels/nixos-23.11";
   };
   
   #Allows and tells nixs how to optimize storage
