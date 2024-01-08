@@ -10,18 +10,37 @@
     ];
 
   #add the Nix User Repository (NUR) to nix
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
+  nixpkgs = { 
+	config = { 
+		packageOverrides = pkgs: {
+    			nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+    	  				inherit pkgs;
+      };
     };
+	allowUnfree = true;
   };
+};
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-  boot.loader.grub.enable = false;
+  boot = { 
+	loader = {
+		grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
-  boot.loader.timeout = 1;
-
+		generic-extlinux-compatible.enable = true;
+  		timeout = 1;
+  	};
+	kernelModules = ["tcp_bbr"];
+	kernel = { 
+		sysctl = {
+			"net.ipv4.tcp_congestion_control" = "bbr";
+			"net.core.default_qdisc" = "fq";
+			"net.core.wmem_max" = 1073741824;
+			"net.core.rmem_max" = 1073741824;
+			"net.ipv4.tcp_rmem" = "4096 87380 1073741824";
+			"net.ipv4.tcp_wmem" = "4096 87380 1073741824";
+			};
+		};
+};
   hardware = {
     #raspberry-pi."4".apply-overlays-dtmerge.enable = true;
     #deviceTree = {

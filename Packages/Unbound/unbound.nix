@@ -4,12 +4,12 @@
     
     services.unbound = {
         enable = true;
-        resolveLocalQueries = false;
+        resolveLocalQueries = true;
          settings = {
 		server = {
 		    verbosity = 0;
 		    interface = [ "127.0.0.1" ];
-		    port = 5335;
+		    port = 53;
 		    do-ip4 = true;
 		    do-udp = true;
 		    do-tcp = true;
