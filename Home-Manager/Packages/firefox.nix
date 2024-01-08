@@ -42,10 +42,10 @@ in {
 					umatrix
 					sponsorblock
 					user-agent-string-switcher
-					grammarly
 					augmented-steam
 					multi-account-containers
-					cookie-autodelete
+					#I use another version not listed in NUR (will sync with firefox account)
+					#grammarly
 				];
 			search = {
 				force = true;

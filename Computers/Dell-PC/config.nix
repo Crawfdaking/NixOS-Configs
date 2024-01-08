@@ -18,6 +18,18 @@
 
   # Use the systemd-boot EFI boot loader.
   boot = {
+	#Enable TCP BBR congestion control
+	kernelModules = ["tcp_bbr"];
+	kernel = { 
+		sysctl = {
+			"net.ipv4.tcp_congestion_control" = "bbr";
+			"net.core.default_qdisc" = "fq";
+			"net.core.wmem_max" = 1073741824;
+			"net.core.rmem_max" = 1073741824;
+			"net.ipv4.tcp_rmem" = "4096 87380 1073741824";
+			"net.ipv4.tcp_wmem" = "4096 87380 1073741824";
+		};
+	};
   	# Enable binfmt emulation of aarch64-linux.
 #  	binfmt = { 
 #		emulatedSystems = [ "aarch64-linux" ];
@@ -151,7 +163,7 @@ environment.systemPackages = with pkgs; [
   ### automatic upgrade
   system.autoUpgrade = {
       enable = true;
-      channel = "https://nixos.org/channels/nixos-23.05";
+      channel = "https://nixos.org/channels/nixos-23.11";
   };
   
   #Allows and tells nixs how to optimize storage
