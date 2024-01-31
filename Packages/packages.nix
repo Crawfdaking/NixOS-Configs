@@ -50,6 +50,8 @@ environment.systemPackages = with pkgs; [
      neofetch
      gparted
      git
+     fend
+     lazygit
      vim
      nano
      curl
