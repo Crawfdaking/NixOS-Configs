@@ -4,7 +4,7 @@
     imports = [
     	<home-manager/nixos>
 	./Packages/zsh.nix
-	#./Packages/firefox.nix
+	./Packages/firefox.nix
 	./Packages/bat.nix
 	./Packages/git.nix
 	./Packages/neovim.nix

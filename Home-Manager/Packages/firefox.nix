@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {inherit pkgs;};
+nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {inherit pkgs;};
 in {
     home-manager.users.crawford = {pkgs, config, lib, ...}: {
      programs = {
@@ -34,14 +34,13 @@ in {
 		crawford = {
 			id = 0;
 			name = "Crawford";
-			extensions = with nur-no-pkgs.repos.rycee.firefox-addons; [
+			#nur-no-pkgs
+			extensions = with nur.repos.rycee.firefox-addons; [
 					bitwarden
 					privacy-badger
 					ublock-origin
 					temporary-containers
-					#umatrix
 					sponsorblock
-					#user-agent-string-switcher
 					augmented-steam
 					multi-account-containers
 					#I use another version not listed in NUR (will sync with firefox account)
