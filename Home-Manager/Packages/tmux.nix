@@ -7,9 +7,9 @@
 		enable = true;
 		keyMode = "vi";
 		prefix = "C-a";
-		plugins = with pkgs; [
+		plugins = with pkgs.tmuxPlugins; [
 			{
-    			    plugin = tmuxPlugins.vim-tmux-navigator;
+    			    plugin = vim-tmux-navigator;
     			    extraConfig = "set -g @plugin 'christoomey/vim-tmux-navigator'";
   			}
 		];
