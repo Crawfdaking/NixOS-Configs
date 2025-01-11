@@ -6,8 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      ./Dell-PC/config.nix
     ];
 
 
@@ -68,14 +68,14 @@
    services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-  	enable = true;
+  #sound.enable = true;
+  #  hardware.pulseaudio = {
+  #	enable = true;
 	#Adds extra audio codec support
-	package = pkgs.pulseaudioFull;
+  #	package = pkgs.pulseaudioFull;
 	# Auto switches audio to bluetooth when a device is connected
-	extraConfig = "load-module module-switch-on-connect";
-  };
+  #	extraConfig = "load-module module-switch-on-connect";
+  #};
 
   # Enable and configure bluetooth support
   hardware.bluetooth = {
@@ -115,12 +115,12 @@
  ];
 
   # Enable auto-cpufreq daemon
-  services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.enable = true;
 
   #Enables mdns support
   services.avahi = {
 	enable = true;
-	nssmdns = true;
+	nssmdns4 = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -165,7 +165,7 @@
   ### automatic upgrade
   system.autoUpgrade = {
       enable = true;
-      channel = "https://nixos.org/channels/nixos-23.05";
+      channel = "https://nixos.org/channels/nixos-24.11";
   };
   
   #Allows and tells nixs how to optimize storage

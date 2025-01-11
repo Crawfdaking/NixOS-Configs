@@ -39,9 +39,9 @@ in {
 					privacy-badger
 					ublock-origin
 					temporary-containers
-					umatrix
+					#umatrix
 					sponsorblock
-					user-agent-string-switcher
+					#user-agent-string-switcher
 					augmented-steam
 					multi-account-containers
 					#I use another version not listed in NUR (will sync with firefox account)
@@ -86,6 +86,7 @@ in {
    };
   users.users.crawford = {
 		packages = with pkgs; [
+			#Soft Dependency of Firefox
 			speechd
 		];
 	};

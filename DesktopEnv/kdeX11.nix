@@ -5,7 +5,7 @@
   services.xserver.enable = true;
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
   environment = {
@@ -23,11 +23,13 @@
 };
 
   # Configure keymap in X11
-   services.xserver.layout = "us";
+  #services.xserver.layout = "us";
+   services.xserver.xkb.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = true;
+  #services.xserver.libinput.enable = true;
+   services.libinput.enable = true;
 
   #Tell Xorg to use Nvidia Drivers (Also works for Wayland)
     services.xserver.videoDriver = "nvidia";

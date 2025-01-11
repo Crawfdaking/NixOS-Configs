@@ -10,6 +10,7 @@
     #./AdguardHome/adguardHome.nix
     #./Unbound/unbound.nix
     #./Vaultwarden/vaultwarden.nix
+    #./Unstable/packages.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -17,7 +18,6 @@
     packages = with pkgs; [
        gh
        discord
-       authy
        joplin-desktop
        ngrok
        steam
@@ -28,11 +28,11 @@
        lutris
        flameshot
        keepassxc
-       nixos-generators
+       #nixos-generators
        libsForQt5.ark
        localsend
        ungoogled-chromium
-       thunderbird
+       #thunderbird
        #lxappearance
        #lxappearance-gtk2
     ];
@@ -52,7 +52,7 @@ environment.systemPackages = with pkgs; [
      git
      fend
      lazygit
-     vim
+     #vim
      nano
      curl
      wget

@@ -3,11 +3,10 @@
 {
   imports =
     [
-       ./Computers/Dell-PC/config.nix
+       ./Computers/baseConfig.nix
        ./Home-Manager/home-manager.nix
        ./Drivers/nvidia.nix
        ./Packages/packages.nix
-       #./Packages/vaultwarden.nix
        #./DesktopEnv/kdeWayland.nix
         ./DesktopEnv/kdeX11.nix
        #./DesktopEnv/gnomeX11.nix
