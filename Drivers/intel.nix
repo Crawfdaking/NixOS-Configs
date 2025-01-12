@@ -5,12 +5,14 @@
 { config, pkgs, lib, ... }:
 
 {
-	hardware.opengl.extraPackages = [
+	hardware.opengl.extraPackages = with pkgs; [
 		 #New intel graphics
- 		 #intel-media-driver
+ 		 intel-media-driver
+
 		 #Older intel graphics
 		 #vaapiIntel
+
 		 # Gen 8 intel graphics
-		 #intel-compute-runtime
+		 intel-compute-runtime
 	];
 }

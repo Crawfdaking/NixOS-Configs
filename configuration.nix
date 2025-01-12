@@ -6,6 +6,7 @@
        ./Computers/baseConfig.nix
        ./Home-Manager/home-manager.nix
        ./Drivers/nvidia.nix
+      ./Drivers/intel.nix
        ./Packages/packages.nix
        #./DesktopEnv/kdeWayland.nix
         ./DesktopEnv/kdeX11.nix
