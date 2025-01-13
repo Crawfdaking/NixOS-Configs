@@ -14,5 +14,11 @@
 	  extraPackages = with pkgs; [gcc];
 	};
      };
-   };
+    ## This method does not work to grab neovim config files. Creates a symlink in ~/.config named nvim with no lua extention
+    #xdg.configFile.nvim = {
+    #source = /home/crawford/Neovim-Config/init.lua;
+    #recursive = true;
+    #};
+  };
+
 }

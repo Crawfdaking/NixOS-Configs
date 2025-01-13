@@ -5,16 +5,16 @@
      programs = {
 	tmux = {
 		enable = true;
-		keyMode = "vi";
-		prefix = "C-a";
-		plugins = with pkgs.tmuxPlugins; [
-			{
-    			    plugin = vim-tmux-navigator;
-    			    extraConfig = "set -g @plugin 'christoomey/vim-tmux-navigator'";
-  			}
-		];
-		#extraConfig = "";
+				#keyMode = "vi";
+				#prefix = "C-a";
+				#plugins = with pkgs.tmuxPlugins; [
+				#];
 	};
      };
+	xdg.configFile."tmux" = {
+	source = /home/crawford/Tmux-Config;
+	recursive = true;
+	};
+      #xdg.configFile."tmux/resurrect/.empty".text = "";
    };
 }

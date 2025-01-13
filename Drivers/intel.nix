@@ -5,7 +5,7 @@
 { config, pkgs, lib, ... }:
 
 {
-	hardware.opengl.extraPackages = with pkgs; [
+	hardware.graphics.extraPackages = with pkgs; [
 		 #New intel graphics
  		 intel-media-driver
 

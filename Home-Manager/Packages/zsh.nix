@@ -6,20 +6,13 @@
 	zsh = {
 	  enable = true;
 	  autocd = true;
-	 # oh-my-zsh = {
-	#	enable = true;
-	#  };
 	  initExtra = "
-	  #{tmux && exit;}
+	  if [ \"$TMUX\" = \"\" ]; then
+	  tmux;
+	  fi
 	  alias cat='bat'
-	  alias vim='nvim'";
-	  #prezto = {
-		#enable = true;
-		#tmux = {
-		#	autoStartLocal = true;
-		#	autoStartRemote = true;
-		#};
-	  #};
+	  alias vim='nvim'
+	  #unset TMUX";
 	};
      };
    };
