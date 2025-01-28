@@ -11,8 +11,8 @@
 	./Packages/gh.nix
 	./Packages/tmux.nix
     ];
-    home-manager.backupFileExtension = "backup";
-    home-manager.users.crawford = {pkgs, config, lib, ...}: {
+    #home-manager.backupFileExtension = "backup";
+    #home-manager.users.crawford = {pkgs, config, lib, ...}: {
     #Not needed since I adjust nixos config frequently
     #services = {
        #home-manager = {
@@ -25,6 +25,6 @@
      home = { 
      stateVersion = "23.05";
      };
-   };
+   #};
 
 }

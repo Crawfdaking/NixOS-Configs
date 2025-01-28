@@ -8,7 +8,7 @@ let
 
 	});
 in {
-    home-manager.users.crawford = {pkgs, config, lib, ...}: {
+    #home-manager.users.crawford = {pkgs, config, lib, ...}: {
      programs = {
 	neovim = {
 	  enable = true;
@@ -24,6 +24,6 @@ in {
     source = neovimConfig;
     recursive = true;
     };
-  };
+  #};
 
 }

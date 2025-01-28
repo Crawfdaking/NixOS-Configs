@@ -7,7 +7,7 @@ let
 		hash = "sha256-hd4mvyuBBwKxwdbls3UNWmhCVXpG7yFVf1iT+RtGU/4=";
 	});
 in {
-    home-manager.users.crawford = {pkgs, config, lib, ...}: {
+   # home-manager.users.crawford = {pkgs, config, lib, ...}: {
      programs = {
 	tmux = {
 		enable = true;
@@ -18,5 +18,5 @@ in {
 	recursive = true;
 	};
 
-   };
+   #};
 }

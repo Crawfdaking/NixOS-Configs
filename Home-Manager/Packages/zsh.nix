@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-    home-manager.users.crawford = {pkgs, config, lib, ...}: {
+    #home-manager.users.crawford = {pkgs, config, lib, ...}: {
      programs = {
 	zsh = {
 	  enable = true;
@@ -15,5 +15,5 @@
 	  #unset TMUX";
 	};
      };
-   };
+   #};
 }
