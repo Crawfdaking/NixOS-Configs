@@ -8,6 +8,7 @@
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		#gitEmail.url = path:/home/crawford/Desktop/NixOS-Configs/Env;
 	};
 	
 	outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, ...}@inputs:
