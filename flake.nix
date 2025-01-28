@@ -8,10 +8,10 @@
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		#gitEmail.url = path:/home/crawford/Desktop/NixOS-Configs/Env;
+		nur.url = "github:nix-community/NUR";
 	};
 	
-	outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, ...}@inputs:
+	outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nur, ...}@inputs:
 	let
       	system = "x86_64-linux";
       	overlay-unstable = final: prev: {
@@ -29,7 +29,7 @@
 	nixosConfigurations.Dell-PC = nixpkgs.lib.nixosSystem { 
 		inherit system;
 		modules = [
-			({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
+			({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable nur.overlays.default]; })
 			./configuration.nix
 			home-manager.nixosModules.home-manager {
 
