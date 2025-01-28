@@ -6,7 +6,7 @@
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 	}; */
 	
-	#outputs = {self, ...}@inputs: {
+	#outputs = {self, ...}/*@inputs*/: {
 		
 	##Executed by 'nix flake check'
 	#checks."<system>"."<name>" = derivation;

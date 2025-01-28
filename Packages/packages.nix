@@ -10,28 +10,30 @@
     #./AdguardHome/adguardHome.nix
     #./Unbound/unbound.nix
     #./Vaultwarden/vaultwarden.nix
-    #./Unstable/packages.nix
+    ./Unstable/packages.nix
   ];
 
+  # Allow Unfree software
+    nixpkgs.config.allowUnfree = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.crawford = {
     packages = with pkgs; [
-       gh
-       discord
-       joplin-desktop
-       ngrok
-       steam
-       tor
-       bitwarden
-       bitwarden-cli
-       vlc
-       lutris
-       flameshot
-       keepassxc
+       #gh
+       #discord
+       #joplin-desktop
+       #ngrok
+       #steam
+       #tor
+       #bitwarden-desktop
+       #bitwarden-cli
+       #vlc
+       #lutris
+       #flameshot
+       #keepassxc
        #nixos-generators
-       libsForQt5.ark
-       localsend
-       ungoogled-chromium
+       #libsForQt5.ark
+       #localsend
+       #ungoogled-chromium
        #thunderbird
        #lxappearance
        #lxappearance-gtk2
@@ -43,27 +45,27 @@
 #networking.firewall.interfaces.wlp3s0.allowedUDPPorts = [53317];
 
 environment.systemPackages = with pkgs; [
-     lolcat
-     cowsay
-     gnutar
-     unzip
-     neofetch
-     gparted
-     git
-     fend
-     lazygit
-     #vim
-     nano
-     curl
-     wget
-     findutils
-     tldr
-     htop
-     pciutils
-     lshw
-     lm_sensors
-     xclip
-     ncdu
-     dig
+     #lolcat
+     #cowsay
+     #gnutar
+     #unzip
+     #neofetch
+     #gparted
+     #git
+     #fend
+     #lazygit
+     ##vim
+     #nano
+     #curl
+     #wget
+     #findutils
+     #tldr
+     #htop
+     #pciutils
+     #lshw
+     #lm_sensors
+     #xclip
+     #ncdu
+     #dig
  ];
 }

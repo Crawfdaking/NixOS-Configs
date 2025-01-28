@@ -147,7 +147,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-   system.copySystemConfiguration = true;
+   #system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -157,23 +157,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  ### automatic upgrade
-  #system.autoUpgrade = {
-  #enable = true;
-  #channel = "https://nixos.org/channels/nixos-24.11";
-  #};
-  
-  #Allows and tells nixs how to optimize storage
-  #nix = {
-  #settings = {
-  #auto-optimise-store = true;
-    #Enable experimental nix features
-  #experimental-features = [ "nix-command" "flakes" ];
-  #};
-  #gc = {
-  #automatic = true;
-  #dates = "weekly";
-  #options = "--delete-older-than 7d";
-  #};
-  # };
 }

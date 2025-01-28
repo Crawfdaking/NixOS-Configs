@@ -4,7 +4,7 @@
   imports =
     [
        ./Computers/baseConfig.nix
-       ./Home-Manager/home-manager.nix
+       #./Home-Manager/home-manager.nix
        ./Drivers/nvidia.nix
       ./Drivers/intel.nix
        ./Packages/packages.nix

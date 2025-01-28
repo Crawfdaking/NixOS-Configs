@@ -34,8 +34,6 @@
      };
   };
   
-  #Allow Unfree software
-  nixpkgs.config.allowUnfree = true;
 
 
    networking.hostName = "Crawfords_Linux_PC"; # Define your hostname.
@@ -137,11 +135,11 @@
 
 
   # Enable the OpenSSH daemon.
-    services.openssh = {
-	enable = true;
+  #services.openssh = {
+  #enable = true;
 	#By default firewall is auto opened
 	#openFirewall = false;
-     };
+  #};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
@@ -152,7 +150,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-    system.copySystemConfiguration = true;
+    #system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -163,10 +161,11 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
   ### automatic upgrade
-  system.autoUpgrade = {
-      enable = true;
-      channel = "https://nixos.org/channels/nixos-24.11";
-  };
+  #Not needed since I am frequently calling nixos-rebuild switch
+  #system.autoUpgrade = {
+  #enable = true;
+  #channel = "https://nixos.org/channels/nixos-24.11";
+  #};
   
   #Allows and tells nixs how to optimize storage
   nix = {

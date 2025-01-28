@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, home-manager, ... }:
 
 {
     imports = [
-    	<home-manager/nixos>
+    	#<home-manager/nixos>
 	./Packages/zsh.nix
 	./Packages/firefox.nix
 	./Packages/bat.nix
