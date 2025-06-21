@@ -1,17 +1,17 @@
 {
+
 	description = "NixOS flake";
 	
 	inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-		nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+		nixpkgs.url = "nixpkgs/nixos-25.05";
+		nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 		home-manager = {
-			url = "github:nix-community/home-manager/release-24.11";
+			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		nur.url = "github:nix-community/NUR";
 	};
 	
-	outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nur, ...}@inputs:
+	outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, ...}@inputs:
 	let
       	system = "x86_64-linux";
       	overlay-unstable = final: prev: {
@@ -28,8 +28,9 @@
 	##nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
 	nixosConfigurations.Dell-PC = nixpkgs.lib.nixosSystem { 
 		inherit system;
+		#specialArgs = {inherit inputs;};
 		modules = [
-			({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable nur.overlays.default]; })
+			({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
 			./configuration.nix
 			home-manager.nixosModules.home-manager {
 

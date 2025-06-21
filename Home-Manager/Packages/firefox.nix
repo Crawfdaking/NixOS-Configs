@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-{
+let
+#nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {inherit pkgs;};
+in {
     #home-manager.users.crawford = {pkgs, config, lib, ...}: {
      programs = {
 	firefox = {
@@ -32,17 +34,17 @@
 		crawford = {
 			id = 0;
 			name = "Crawford";
-			extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-					bitwarden
-					privacy-badger
-					ublock-origin
-					temporary-containers
-					sponsorblock
-					augmented-steam
-					multi-account-containers
+			#extensions = with nur.repos.rycee.firefox-addons; [
+					#bitwarden
+					#privacy-badger
+					#ublock-origin
+					#temporary-containers
+					#sponsorblock
+					#augmented-steam
+					#multi-account-containers
 					#I use another version not listed in NUR (will sync with firefox account)
 					#grammarly
-				];
+				#];
 			search = {
 				force = true;
 				default = "Brave";
