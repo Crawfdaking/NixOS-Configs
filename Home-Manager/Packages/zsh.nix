@@ -6,7 +6,7 @@
 	zsh = {
 	  enable = true;
 	  autocd = true;
-	  initExtra = "
+	  initContent = "
 	  if [ \"$TMUX\" = \"\" ]; then
 	  tmux;
 	  fi

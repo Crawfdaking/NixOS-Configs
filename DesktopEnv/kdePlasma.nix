@@ -6,10 +6,10 @@
 
   # Enable the Plasma 5 Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   environment = {
-  	plasma5 = {
+  	plasma6 = {
 		excludePackages = with pkgs.libsForQt5; [okular elisa gwenview];
 	};
 	shells = with pkgs; [zsh];
