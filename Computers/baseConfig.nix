@@ -12,11 +12,11 @@
 
 
   #add the Nix User Repository (NUR) to nix
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
+  #nixpkgs.config.packageOverrides = pkgs: {
+  #  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #    inherit pkgs;
+  #  };
+  #};
 
 
   # Use the systemd-boot EFI boot loader.
@@ -63,18 +63,28 @@
   # services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
-   services.printing.enable = true;
+  #services.printing.enable = true;
 
   # Enable sound.
-  #sound.enable = true;
-  #  hardware.pulseaudio = {
-  #	enable = true;
-	#Adds extra audio codec support
-  #	package = pkgs.pulseaudioFull;
-	# Auto switches audio to bluetooth when a device is connected
-  #	extraConfig = "load-module module-switch-on-connect";
-  #};
+  # sound.enable = true;
+  #   hardware.pulseaudio = {
+  # 	enable = true;
+  #       #Adds extra audio codec support
+  # 	package = pkgs.pulseaudioFull;
+  #       # Auto switches audio to bluetooth when a device is connected
+  # 	extraConfig = "load-module module-switch-on-connect";
+  # };
 
+  security.rtkit.enable = true;
+  services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+	  # If you want to use JACK applications, uncomment this
+	  jack.enable = true;
+  };
+  
   # Enable and configure bluetooth support
   hardware.bluetooth = {
 	enable = true;
@@ -120,6 +130,8 @@
 	enable = true;
 	nssmdns4 = true;
   };
+
+  services.locate.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

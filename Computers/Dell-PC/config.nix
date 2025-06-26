@@ -73,7 +73,7 @@
 
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+   services.printing.enable = true;
 
   # Enable sound.
   #security.rtkit.enable = true;
@@ -108,15 +108,15 @@
   #pavucontrol
   #];
 
-  services.locate.enable = true;
+  #services.locate.enable = true;
 
   #services.flatpak.enable = true;
 
   #Enables mdns support
-  services.avahi = {
-	enable = true;
-	nssmdns4 = true;
-  };
+  #  services.avahi = {
+  #	enable = true;
+  #	nssmdns4 = true;
+  #  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   #programs = {

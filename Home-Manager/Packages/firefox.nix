@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }:
-let
-#nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {inherit pkgs;};
-in {
+{
     #home-manager.users.crawford = {pkgs, config, lib, ...}: {
      programs = {
 	firefox = {
@@ -34,7 +32,7 @@ in {
 		crawford = {
 			id = 0;
 			name = "Crawford";
-			#extensions = with nur.repos.rycee.firefox-addons; [
+			#extensions = with pkgs.nur.repos.rycee.firefox-addons; [
 					#bitwarden
 					#privacy-badger
 					#ublock-origin
