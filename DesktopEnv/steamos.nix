@@ -16,6 +16,8 @@
   #Tell Xorg to use Nvidia Drivers (Also works for Wayland)
     services.xserver.videoDriver = "nvidia";
 
+  services.displayManager.defaultSession = "LightDM";
+
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.autoLogin = {
     enable = true;
