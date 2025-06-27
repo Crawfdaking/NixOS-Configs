@@ -40,18 +40,18 @@
       			 ./Drivers/intel.nix
       			 ./Packages/packages.nix
       			 #./DesktopEnv/kdeWayland.nix
-      			  ./DesktopEnv/kdeX11.nix
+      			  ./DesktopEnv/steamos.nix
       			 #./DesktopEnv/gnomeX11.nix
       			 #./DesktopEnv/xfceX11.nix
       			 #./DesktopEnv/cinnamonX11.nix
       			 #./DesktopEnv/lxqtX11.nix
-			home-manager.nixosModules.home-manager {
+			/* home-manager.nixosModules.home-manager {
 
 			home-manager.useGlobalPkgs=true;
 			home-manager.useUserPackages=true;
 			home-manager.users.crawford = import ./Home-Manager/home-manager.nix;
 
-			}
+			}*/
 		   ];
 		}; 
 	    };
