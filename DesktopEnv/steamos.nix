@@ -25,7 +25,7 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  programs.steam.gamescope.enable = true;
+  programs.steam.gamescopeSession.enable = true;
   programs.gamescope.enable = true;
 
 
