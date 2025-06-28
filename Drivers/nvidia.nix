@@ -5,6 +5,9 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  nixpkgs.config.nvidia.acceptLicense = true;
+
   #Nvidia Drivers
   # Make sure opengl is enabled
   hardware.graphics = {
@@ -31,10 +34,10 @@
   
   # Enables and configures integrated and dedicated gpus to work together
   hardware.nvidia.prime = {
-    offload = {
+    /*offload = {
       enable = true;
       enableOffloadCmd = true;
-    };
+    };*/
 
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";

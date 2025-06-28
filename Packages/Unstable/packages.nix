@@ -15,6 +15,8 @@
        #tor
        bitwarden-desktop
        bitwarden-cli
+       ente-auth
+       yubioath-flutter
        #vlc
        #lutris
        flameshot
