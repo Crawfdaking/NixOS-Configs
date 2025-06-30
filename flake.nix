@@ -5,14 +5,14 @@
 	inputs = {
 		nixpkgs.url = "nixpkgs/nixos-25.05";
 		nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-		home-manager = {
+		/*home-manager = {
 			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
-		};
+		};*/
 		NixUserRepos.url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
 	};
 	
-	outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, NixUserRepos, ...}/*@inputs*/:
+	outputs = {self, nixpkgs, nixpkgs-unstable, /*home-manager,*/ NixUserRepos, ...}/*@inputs*/:
 	let
       	system = "x86_64-linux";
       	overlay-unstable = final: prev: {
@@ -39,19 +39,20 @@
       			 ./Drivers/nvidia.nix
       			 ./Drivers/intel.nix
       			 ./Packages/packages.nix
-      			 ./DesktopEnv/kdePlasma.nix
+			 ./DesktopEnv/headless.nix
+			 #./DesktopEnv/kdePlasma.nix
       			 #./DesktopEnv/steamos.nix
       			 #./DesktopEnv/gnomeX11.nix
       			 #./DesktopEnv/xfceX11.nix
       			 #./DesktopEnv/cinnamonX11.nix
       			 #./DesktopEnv/lxqtX11.nix
-			 home-manager.nixosModules.home-manager {
+			 /*home-manager.nixosModules.home-manager {
 
 			home-manager.useGlobalPkgs=true;
 			home-manager.useUserPackages=true;
 			home-manager.users.crawford = import ./Home-Manager/home-manager.nix;
 
-			}
+			}*/
 		   ];
 		}; 
 	    };

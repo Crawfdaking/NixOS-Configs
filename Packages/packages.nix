@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ./Tailscale/tailscale.nix
+    #./Tailscale/tailscale.nix
     #./AdguardHome/adguardHome.nix
     #./Unbound/unbound.nix
     #./Vaultwarden/vaultwarden.nix

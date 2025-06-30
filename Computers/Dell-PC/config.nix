@@ -132,11 +132,11 @@
 
 
   # Enable the OpenSSH daemon.
-#    services.openssh = {
-#	enable = true;
+    services.openssh = {
+	enable = true;
 	#By default firewall is auto opened
 	#openFirewall = false;
-#     };
+     };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 631 139 443 445 515 9100 9102];
