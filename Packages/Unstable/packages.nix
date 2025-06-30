@@ -1,33 +1,36 @@
 { config, pkgs, lib, ... }:
 
-{
-
-   
+{  
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.crawford = {
     packages = with pkgs.unstable; [
-       rclone
-       gh
+       #Graphical Packages
+       /*
        discord
        joplin-desktop
-       #ngrok
-       #steam
-       #tor
+       steam
+       tor
        bitwarden-desktop
-       bitwarden-cli
        ente-auth
        yubioath-flutter
-       #vlc
-       #lutris
-       flameshot
-       #keepassxc
-       #nixos-generators
-       #libsForQt5.ark
-       localsend
        ungoogled-chromium
-       #thunderbird
-       #lxappearance
-       #lxappearance-gtk2
+       flameshot
+       vlc
+       lutris
+       keepassxc
+       thunderbird
+       lxappearance
+       lxappearance-gtk2
+       */
+       # Terminal Packages
+       /*
+       ngrok
+       nixos-generators
+       */
+       bitwarden-cli
+       localsend
+       rclone
+       gh
     ];
   };
 
@@ -41,7 +44,6 @@
      	git
      	fend
      	lazygit
-     	#vim
      	nano
      	curl
      	wget

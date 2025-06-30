@@ -106,7 +106,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-     environment.systemPackages = with pkgs; [
+     /*environment.systemPackages = with pkgs; [
      	git
 	vim
 	nano
@@ -120,7 +120,7 @@
 	lm_sensors
 	xclip
 	dig
- ];
+ ];*/
 
   # Enable auto-cpufreq daemon
   #services.auto-cpufreq.enable = true;
