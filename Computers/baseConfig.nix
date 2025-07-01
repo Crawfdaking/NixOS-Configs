@@ -126,10 +126,10 @@
   #services.auto-cpufreq.enable = true;
 
   #Enables mdns support
-  services.avahi = {
+/*  services.avahi = {
 	enable = true;
 	nssmdns4 = true;
-  };
+  };*/
 
   services.locate.enable = true;
 

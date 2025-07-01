@@ -26,9 +26,9 @@
        /*
        ngrok
        nixos-generators
+       localsend
        */
        bitwarden-cli
-       localsend
        rclone
        gh
     ];
