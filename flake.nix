@@ -9,10 +9,10 @@
 			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};*/
-		NixUserRepos.url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
+		#NixUserRepos.url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
 	};
 	
-	outputs = {self, nixpkgs, nixpkgs-unstable, /*home-manager,*/ NixUserRepos, ...}/*@inputs*/:
+	outputs = {self, nixpkgs, nixpkgs-unstable, /*home-manager, NixUserRepos,*/ ...}/*@inputs*/:
 	let
       	system = "x86_64-linux";
       	overlay-unstable = final: prev: {
@@ -22,9 +22,9 @@
            inherit system;
            config.allowUnfree = true;
          };
-	  nur = import (builtins.fetchTarball NixUserRepos/*.url*/) {
+	  /*nur = import (builtins.fetchTarball NixUserRepos) {
 		inherit system;
-	};
+	};*/
 
 };
     	in {

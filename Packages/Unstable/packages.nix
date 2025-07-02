@@ -56,6 +56,7 @@
      	xclip
      	ncdu
      	dig
+	acpi
  ];
 
 }
